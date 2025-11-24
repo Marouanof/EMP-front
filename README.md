@@ -1,6 +1,6 @@
 # Employee Management Frontend
 
-Application Angular pour la gestion des employés avec un thème CRM moderne (bleu et jaune).
+Application Angular pour la gestion des employés.
 
 ## Fonctionnalités
 
