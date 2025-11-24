@@ -1,0 +1,50 @@
+<div class="employee-list-container">
+  <div class="header-section">
+    <h2>Liste des Employés</h2>
+    <button class="btn-primary" (click)="addEmployee()">
+      + Ajouter un employé
+    </button>
+  </div>
+
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+    <button class="btn-retry" (click)="loadEmployees()">Réessayer</button>
+  </div>
+
+  <div *ngIf="loading && !error" class="loading">Chargement...</div>
+
+  <div *ngIf="!loading && !error && employees.length === 0" class="empty-state">
+    <p>Aucun employé trouvé</p>
+    <button class="btn-primary" (click)="addEmployee()">
+      Ajouter le premier employé
+    </button>
+  </div>
+
+  <div *ngIf="!loading && !error && employees.length > 0" class="employee-grid">
+    <div *ngFor="let employee of employees" class="employee-card">
+      <div class="employee-header">
+        <div class="employee-avatar">
+          {{ employee.firstName.charAt(0) }}{{ employee.lastName.charAt(0) }}
+        </div>
+        <div class="employee-info">
+          <h3>{{ employee.firstName }} {{ employee.lastName }}</h3>
+          <p class="employee-email">{{ employee.email }}</p>
+        </div>
+      </div>
+      <div class="employee-details">
+        <div class="detail-item">
+          <span class="label">Salaire:</span>
+          <span class="value salary">{{ employee.salary | number:'1.2-2' }} €</span>
+        </div>
+      </div>
+      <div class="employee-actions">
+        <button class="btn-edit" (click)="editEmployee(employee.id)">
+          Modifier
+        </button>
+        <button class="btn-delete" (click)="deleteEmployee(employee.id)">
+          Supprimer
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
